@@ -1,23 +1,23 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
-    "lint": "npm run lint:js",
-    "lintfix": "npm run lint:js -- --fix"
-  },
-  "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@types/node": "^18.16.19",
-    "nuxt": "^3.6.2",
-    "eslint": "^8.24.0",
-    "eslint-plugin-jest": "^27.0.4",
-    "eslint-plugin-nuxt": "^4.0.0",
-    "eslint-plugin-vue": "^9.5.1"
-  }
+    "name": "nuxt-app",
+    "private": true,
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare",
+        "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+        "lint": "npm run lint:js",
+        "lintfix": "npm run lint:js -- --fix"
+    },
+    "devDependencies": {
+        "@nuxt/devtools": "latest",
+        "@types/node": "^18.16.19",
+        "eslint": "^8.45.0",
+        "eslint-plugin-jest": "^27.0.4",
+        "eslint-plugin-nuxt": "^4.0.0",
+        "eslint-plugin-vue": "^9.15.1",
+        "nuxt": "^3.6.2"
+    }
 }
