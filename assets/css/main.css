@@ -1,0 +1,13 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.nav-item {
+    margin: 0.25em;
+}
+
+.nav-link {
+
+}
