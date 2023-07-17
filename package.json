@@ -23,5 +23,8 @@
         "eslint-plugin-vue": "^9.15.1",
         "nuxt": "^3.6.3",
         "vitest": "^0.33.0"
+    },
+    "dependencies": {
+        "mongodb": "^5.7.0"
     }
 }
