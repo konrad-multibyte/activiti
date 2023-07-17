@@ -2,7 +2,7 @@ import { writeFile } from "fs"
 import { join } from "path";
 import { MongoClient, ServerApiVersion } from "mongodb";
 import { Upload } from "@aws-sdk/lib-storage";
-import { S3Client, CompleteMultipartUploadCommandOutput } from "@aws-sdk/client-s3";
+import { S3Client } from "@aws-sdk/client-s3";
 
 export default defineEventHandler(async (event) => {
     const files = await readMultipartFormData(event);
