@@ -2,7 +2,7 @@
     <form @submit.prevent="sendFile" action="" enctype="multipart/form-data">
         <div class="field">
             <label for="project">Upload Project</label>
-            <input type="file" name="file" ref="file" id="project" @change="selectFile">
+            <input type="file" accept="application/zip, application/octet-stream, application/x-zip-compressed, multipart/x-zip" name="file" ref="file" id="project" @change="selectFile">
         </div>
         <div class="field">
             <button class="button button-primar">Upload</button>
