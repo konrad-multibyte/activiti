@@ -1,8 +1,6 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 export default defineEventHandler(async (event) => {
-    // @ts-ignore
-    const { id } = event.context.params;
     const config = useRuntimeConfig(event);
     const client = new MongoClient(config.mongoUri, {
         serverApi: {
@@ -13,10 +11,11 @@ export default defineEventHandler(async (event) => {
     });
     try {
         await client.connect();
-        const project = await client.db(config.mongoDb).collection("projects").findOne( { id: id });
-        return { project };
-    }
-    finally {
+        const projects = await client.db(config.mongoDb).collection("projects").find({}).toArray();
+        return { projects };
+    } catch (error) {
+        console.log(error);
+    } finally {
         await client.close();
     }
 });
