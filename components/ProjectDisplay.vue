@@ -1,22 +1,31 @@
 <template>
-    <div v-for="project in projects">
-        {{ project }}
+    <div class="project-cards">
+        <div class="project-card" v-for="project in projects?.projects">
+            <div class="project-card-container">
+                <p>{{ project.id }}</p>
+                <p>{{ project.filename }}</p>
+                <div class="project-buttons">
+                    <!-- <a class="project-button" v-bind:href="`${project.location}`" download>
+                        <button class="button button-primary">Download</button>
+                    </a> -->
+                    <button class="project-button button button-danger" :data-project-id="`${project.id}`" @click="deleteFile">
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
+const { data: projects } = await useFetch("/api/project");
 
-export default {
-    name: "ProjectDisplay",
-    data() {
-        return {
-            projects: ""
-        };
-    },
-    mounted: async () => {
-        projects = await fetch("/api/project/", {
-            method: "get"
-        })
-    }
+async function deleteFile(event) {
+    const projectId =  event.target.getAttribute("data-project-id")
+    await useFetch(`/api/project/${projectId}`, {
+        method: "DELETE"
+    });
+    refreshNuxtData(); 
 }
+
 </script>

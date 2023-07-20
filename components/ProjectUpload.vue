@@ -35,6 +35,7 @@ export default {
             } catch (error) {
                 console.log(error);
             }
+            refreshNuxtData();
         }
     }
 }

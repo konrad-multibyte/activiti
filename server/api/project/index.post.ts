@@ -22,7 +22,8 @@ export default defineEventHandler(async (event) => {
             await client.connect();
             for (let file of uploadfiles) {
                 try {
-                    const key = randomUUID();
+                    const id = randomUUID();
+                    const key = `${id}.${file.filename?.split(".")[file.filename.split(".").length - 1]}`
                     const response = await new Upload({
                         client: new S3Client({
                             endpoint: config.s3Uri,
@@ -34,13 +35,14 @@ export default defineEventHandler(async (event) => {
                         }),
                         params: {
                             Bucket: config.s3Bucket,
-                            Key: `${key}.${file.filename?.split(".")[file.filename.split(".").length - 1]}`,
+                            Key: key,
                             Body: file.data
                         }
                     }).done();
                     if (response instanceof Object && "ETag" in response) {
                         const metadata = {
-                            id: key,
+                            id: id,
+                            key: key,
                             filename: file.filename,
                             name: file.name,
                             type: file.type,
