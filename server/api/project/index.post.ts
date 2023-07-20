@@ -7,6 +7,9 @@ export default defineEventHandler(async (event) => {
     const uploadfiles = await readMultipartFormData(event);
     const config = useRuntimeConfig(event);
     if (uploadfiles !== undefined) {
+        if (!("filename" in uploadfiles[0])) {
+            throw createError({ statusCode: 400, statusMessage: "Bad Request", message: "The payload is not specified."  })
+        }
         const client = new MongoClient(config.mongoUri, {
             serverApi: {
                 version: ServerApiVersion.v1,
