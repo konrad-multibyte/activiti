@@ -21,7 +21,7 @@
         "eslint-plugin-jest": "^27.0.4",
         "eslint-plugin-nuxt": "^4.0.0",
         "eslint-plugin-vue": "^9.15.1",
-        "nuxt": "^3.6.3",
+        "nuxt": "^3.6.5",
         "vitest": "^0.33.0"
     },
     "dependencies": {
