@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     });
     try {
         await client.connect();
-        const confirmation = await client.db(config.mongoDb).collection("projects").deleteOne({ id: id });
+        const confirmation = await client.db(config.mongoDb).collection("apps").deleteOne({ id: id });
         const s3 = new S3Client({
             endpoint: config.s3Uri,
             credentials: {

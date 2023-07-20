@@ -13,8 +13,8 @@ export default defineEventHandler(async (event) => {
     });
     try {
         await client.connect();
-        const project = await client.db(config.mongoDb).collection("projects").findOne( { id: id });
-        return { project };
+        const app = await client.db(config.mongoDb).collection("apps").findOne( { id: id });
+        return { app };
     }
     finally {
         await client.close();

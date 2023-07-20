@@ -50,7 +50,7 @@ export default defineEventHandler(async (event) => {
                             bucket: response.Bucket,
                             location: response.Location
                         };
-                        await client.db(config.mongoDb).collection("projects").insertOne(metadata);
+                        await client.db(config.mongoDb).collection("apps").insertOne(metadata);
                         files.push(metadata);
                     } else {
                         console.log("Upload failed." + response)

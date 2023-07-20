@@ -1,0 +1,4 @@
+<template>
+    <AppUpload />
+    <AppDisplay />
+</template>

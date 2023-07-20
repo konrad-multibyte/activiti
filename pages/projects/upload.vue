@@ -1,4 +1,0 @@
-<template>
-    <ProjectUpload />
-    <ProjectDisplay />
-</template>
