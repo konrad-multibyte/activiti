@@ -1,8 +1,8 @@
 <template>
     <form @submit.prevent="sendFile" action="" enctype="multipart/form-data">
         <div class="field">
-            <label for="project">Upload Project</label>
-            <input type="file" accept="application/zip, application/octet-stream, application/x-zip-compressed, multipart/x-zip" name="file" ref="file" id="project" required @change="selectFile">
+            <label for="app">Upload app</label>
+            <input type="file" accept="application/zip, application/octet-stream, application/x-zip-compressed, multipart/x-zip" name="file" ref="file" id="app" required @change="selectFile">
         </div>
         <div class="field">
             <button class="button button-primar">Upload</button>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    name: "ProjectUpload",
+    name: "appUpload",
 
     data() {
         return {
@@ -28,7 +28,7 @@ export default {
             const formData = new FormData();
             formData.append("file", this.file);
             try {
-                await $fetch("/api/project", {
+                await $fetch("/api/app", {
                     method: "post",
                     body: formData
                 });

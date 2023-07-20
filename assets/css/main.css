@@ -12,42 +12,42 @@
 
 }
 
-.project-cards {
+.app-cards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.project-card {
+.app-card {
     margin: 0.66em;
     padding: 0.80em;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.project-buttons {
+.app-buttons {
     display: flex;
 }
 
-.project-button:first-child {
+.app-button:first-child {
     margin-left: 0;
 }
 
-.project-button:last-child {
+.app-button:last-child {
     margin-right: 0;
 }
 
-.project-button {
+.app-button {
     margin-left: 0.25em;
     margin-right: 0.25em
 }
 
-.project-card:hover {
+.app-card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .project-cards {
+    .app-cards {
         display: block;
     }
 }

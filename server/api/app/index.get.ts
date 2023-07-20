@@ -11,8 +11,8 @@ export default defineEventHandler(async (event) => {
     });
     try {
         await client.connect();
-        const projects = await client.db(config.mongoDb).collection("projects").find({}).toArray();
-        return { projects };
+        const apps = await client.db(config.mongoDb).collection("apps").find({}).toArray();
+        return { apps };
     } catch (error) {
         console.log(error);
     } finally {
