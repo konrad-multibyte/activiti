@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-const { data: projects } = await useFetch("/api/project");
+const { data: projects } = useFetch("/api/project");
 
 async function deleteFile(event) {
     const projectId =  event.target.getAttribute("data-project-id")
