@@ -1,0 +1,4 @@
+<template>
+    <FormUpload />
+    <FormDisplay />
+</template>

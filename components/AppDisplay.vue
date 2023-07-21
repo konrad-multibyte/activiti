@@ -1,14 +1,14 @@
 <template>
-    <div class="app-cards">
-        <div class="app-card" v-for="app in apps?.apps">
-            <div class="app-card-container">
+    <div class="display-cards">
+        <div class="display-card" v-for="app in apps?.apps">
+            <div class="display-card-container">
                 <p>{{ app.id }}</p>
                 <p>{{ app.filename }}</p>
-                <div class="app-buttons">
+                <div class="display-card-buttons">
                     <!-- <a class="app-button" v-bind:href="`${app.location}`" download>
                         <button class="button button-primary">Download</button>
                     </a> -->
-                    <button class="app-button button button-danger" :data-app-id="`${app.id}`" @click="deleteFile">
+                    <button class="display-card-button button button-danger" :data-app-id="`${app.id}`" @click="deleteFile">
                         Remove
                     </button>
                 </div>

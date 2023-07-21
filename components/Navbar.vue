@@ -4,7 +4,7 @@
             <a class="nav-link" href="">Processes</a>
         </div>
         <div class="nav-item">
-            <a class="nav-link" href="">Forms</a>
+            <a class="nav-link" href="/forms">Forms</a>
         </div>
         <div class="nav-item">
             <a class="nav-link" href="/apps">Apps</a>

@@ -12,42 +12,42 @@
 
 }
 
-.app-cards {
+.display-cards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.app-card {
+.display-card {
     margin: 0.66em;
     padding: 0.80em;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.app-buttons {
+.display-card-buttons {
     display: flex;
 }
 
-.app-button:first-child {
+.display-card-button:first-child {
     margin-left: 0;
 }
 
-.app-button:last-child {
+.display-button:last-child {
     margin-right: 0;
 }
 
-.app-button {
+.display-button {
     margin-left: 0.25em;
     margin-right: 0.25em
 }
 
-.app-card:hover {
+.display-card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .app-cards {
+    .display-cards {
         display: block;
     }
 }
