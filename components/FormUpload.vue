@@ -5,7 +5,7 @@
             <input type="file" accept="application/json" name="file" ref="file" id="form" required @change="selectFile">
         </div>
         <div class="field">
-            <button class="button button-primar">Upload</button>
+            <button class="button button-primary">Upload</button>
         </div>
     </form>
 </template>
@@ -35,7 +35,7 @@ export default {
             } catch (error) {
                 console.log(error);
             }
-            refreshNuxtData();
+            refreshNuxtData("getFormsForFormDisplay");
         }
     }
 }

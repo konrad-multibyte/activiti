@@ -1,7 +1,9 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
-import Form  from "../../../types/Form"
+import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
+import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 export default defineEventHandler(async (event) => {
+    // @ts-ignore
+    const { id } = event.context.params;
     const config = useRuntimeConfig(event);
     const client = new MongoClient(config.mongoUri, {
         serverApi: {
@@ -12,11 +14,10 @@ export default defineEventHandler(async (event) => {
     });
     try {
         await client.connect();
-        const forms = await client.db(config.mongoDb).collection("forms").find<Form>({}).toArray();
-        return forms;
-    } catch (error) {
-        console.log(error);
-    } finally {
+        const confirmation = await client.db(config.mongoDb).collection("forms").deleteOne({ _id: new ObjectId(id) });
+        return { confirmation };
+    }
+    finally {
         await client.close();
     }
 });

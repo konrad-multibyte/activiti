@@ -1,4 +1,5 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
+import Form from "../../../types/Form"
 
 export default defineEventHandler(async (event) => {
     const uploadfiles = await readMultipartFormData(event);
@@ -16,8 +17,9 @@ export default defineEventHandler(async (event) => {
         for (let file of uploadfiles) {
             if (file.type === "application/json") {
                 try {
+                    const form = JSON.parse(file.data.toString())  
                     await client.connect();
-                    const result = await client.db(config.mongoDb).collection("forms").insertOne(JSON.parse(file.data.toString()));
+                    const result = await client.db(config.mongoDb).collection<Form>("forms").insertOne(form)
                     files.push(result);
                 } catch(error) {
                     console.log(error);

@@ -20,12 +20,14 @@
 <script setup lang="ts">
 const { data: apps } = useFetch("/api/app");
 
-async function deleteFile(event) {
-    const appId =  event.target.getAttribute("data-app-id")
-    await useFetch(`/api/app/${appId}`, {
-        method: "DELETE"
-    });
-    refreshNuxtData(); 
+async function deleteFile(event: MouseEvent) {
+    if (event.target != null && event.target instanceof Element) {
+        const appId = event.target.getAttribute("data-app-id")
+        await useFetch(`/api/app/${appId}`, {
+            method: "DELETE"
+        });
+        refreshNuxtData();
+    }
 }
 
 </script>
