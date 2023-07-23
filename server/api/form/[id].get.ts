@@ -1,4 +1,4 @@
-import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import Form from "../../../types/Form";
 
 export default defineEventHandler(async (event) => {
@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig(event);
     const client = new MongoClient(config.mongoUri, {
         serverApi: {
-            version: ServerApiVersion.v1,
+            version: "1",
             strict: true,
             deprecationErrors: true,
         }

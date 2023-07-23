@@ -1,5 +1,4 @@
-import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
-import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { MongoClient, ObjectId } from "mongodb";
 
 export default defineEventHandler(async (event) => {
     // @ts-ignore
@@ -7,7 +6,7 @@ export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig(event);
     const client = new MongoClient(config.mongoUri, {
         serverApi: {
-            version: ServerApiVersion.v1,
+            version: "1",
             strict: true,
             deprecationErrors: true,
         }

@@ -1,4 +1,4 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient } from "mongodb";
 import Form from "../../../types/Form"
 
 export default defineEventHandler(async (event) => {
@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
     if (uploadfiles !== undefined) {
         const client = new MongoClient(config.mongoUri, {
             serverApi: {
-                version: ServerApiVersion.v1,
+                version: "1",
                 strict: true,
                 deprecationErrors: true,
             }
