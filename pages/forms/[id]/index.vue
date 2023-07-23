@@ -3,11 +3,15 @@
         <h1 class="form-header">{{ form.name }}</h1>
         <p class="from-description" v-if="form.description != null || form.description != ''">{{ form.description }}</p>
         <p class="form-description-none" v-if="form.description === ''">No description provided.</p>
-        <a href="/forms/">
-            <button class="display-card-button button button-danger" :data-form-id="`${form._id}`" @click="deleteForm">
-                Remove
-            </button>
-        </a>
+        <div class="form-action-buttons">
+            <a href="/forms/">
+                <button class="form-action-button button button-danger" :data-form-id="`${form._id}`" @click="deleteForm">
+                    Remove
+                </button>
+                
+            </a>
+            <FormUpdate :formId="form._id" />
+        </div>
         <h2>Preview</h2>
         <div class="form-preview">
             <div class="form-preview-tabs" v-if="form.editorJson.tabs.length > 0">
@@ -53,7 +57,7 @@
 const route = useRoute();
 const { data: form, pending, error, refresh: refreshForm, status } = useFetch(`/api/form/${route.params.id}`,
     {
-        key: "getFormsForFormDisplay",
+        key: "getForm",
         method: "GET"
     });
 
