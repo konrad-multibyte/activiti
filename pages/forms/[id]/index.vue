@@ -19,9 +19,30 @@
         </div>
         <div class="form-preview-representation">
             <div v-for="field in form.editorJson.fields">
-                <h4>{{ field.name }}</h4>
-                <div v-for="childFieldCollection in field.fields">
-                    {{ childFieldCollection }}
+                <div v-if="field.tab">
+                    <div v-if="field.tab === 'tab1'">
+                        <h4>{{ field.name }}</h4>
+                        <p>class: {{ field.className }}</p>
+                        <div v-for="childFieldCollection in field.fields"
+                            v-if="field.fieldType === 'ContainerRepresentation'">
+                            <div v-for="childField in childFieldCollection" v-if="childFieldCollection.length > 0">
+                                <p>
+                                    {{ childField }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-else>
+                    <h4>{{ field.name }}</h4>
+                    <p>class: {{ field.className }}</p>
+                    <div v-for="childFieldCollection in field.fields" v-if="field.fieldType === 'ContainerRepresentation'">
+                        <div v-for="childField in childFieldCollection" v-if="childFieldCollection.length > 0">
+                            <p>
+                                {{ childField }}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
