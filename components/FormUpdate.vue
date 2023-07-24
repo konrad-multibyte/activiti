@@ -1,44 +1,53 @@
 <template>
-    <form @submit.prevent="sendFile" action="" enctype="multipart/form-data" :data-form-id="formId">
-        <div class="field">
-            <label for="app">Update form</label>
-            <input type="file" accept="application/json" name="file" ref="file" id="form" required @change="selectFile">
-        </div>
-        <div class="field">
-            <button class="button button-primary">Update</button>
-        </div>
-    </form>
+  <form action="" enctype="multipart/form-data" :data-form-id="formId" @submit.prevent="sendFile">
+    <div class="field">
+      <label for="app">Update form</label>
+      <input
+        id="form"
+        ref="file"
+        type="file"
+        accept="application/json"
+        name="file"
+        required
+        @change="selectFile"
+      >
+    </div>
+    <div class="field">
+      <button class="button button-primary">
+        Update
+      </button>
+    </div>
+  </form>
 </template>
 
 <script>
-
 export default {
-    name: "updateForm",
-    props: ["formId"],
-    data() {
-        return {
-            file: ""
-        };
+    name: 'UpdateForm',
+    props: {
+        formid: string
     },
-
+    data () {
+        return {
+            file: ''
+        }
+    },
     methods: {
-        selectFile() {
-            this.file = this.$refs.file.files[0];
+        selectFile () {
+            this.file = this.$refs.file.files[0]
         },
-        async sendFile(event) {
-            const formId = event.target.getAttribute("data-form-id");
-            console.log(formId)
-            const formData = new FormData();
-            formData.append("file", this.file);
+        async sendFile (event) {
+            const formId = event.target.getAttribute('data-form-id')
+            const formData = new FormData()
+            formData.append('file', this.file)
             try {
                 await $fetch(`/api/form/${formId}`, {
-                    method: "put",
+                    method: 'put',
                     body: formData
-                });
+                })
             } catch (error) {
-                console.log(error);
+                console.log(error)
             }
-            refreshNuxtData("getForm");
+            refreshNuxtData('getForm')
         }
     }
 }
