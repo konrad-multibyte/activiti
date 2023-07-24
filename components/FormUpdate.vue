@@ -1,20 +1,20 @@
 <template>
-  <form action="" enctype="multipart/form-data" @submit.prevent="sendFile">
+  <form action="" enctype="multipart/form-data" :data-form-id="formId" @submit.prevent="sendFile">
     <div class="field">
-      <label for="app">Upload app</label>
+      <label for="app">Update form</label>
       <input
-        id="app"
+        id="form"
         ref="file"
         type="file"
-        accept="application/zip, application/octet-stream, application/x-zip-compressed, multipart/x-zip"
+        accept="application/json"
         name="file"
         required
         @change="selectFile"
       >
     </div>
     <div class="field">
-      <button class="button button-primar">
-        Upload
+      <button class="button button-primary">
+        Update
       </button>
     </div>
   </form>
@@ -22,7 +22,10 @@
 
 <script>
 export default {
-    name: 'AppUpload',
+    name: 'UpdateForm',
+    props: {
+        formid: string
+    },
     data () {
         return {
             file: ''
@@ -32,18 +35,19 @@ export default {
         selectFile () {
             this.file = this.$refs.file.files[0]
         },
-        async sendFile () {
+        async sendFile (event) {
+            const formId = event.target.getAttribute('data-form-id')
             const formData = new FormData()
             formData.append('file', this.file)
             try {
-                await $fetch('/api/app', {
-                    method: 'post',
+                await $fetch(`/api/form/${formId}`, {
+                    method: 'put',
                     body: formData
                 })
             } catch (error) {
                 console.log(error)
             }
-            refreshNuxtData()
+            refreshNuxtData('getForm')
         }
     }
 }

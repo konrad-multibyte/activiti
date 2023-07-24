@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
-    css: [`assets/css/main.css`],
+    css: ['assets/css/main.css'],
     runtimeConfig: {
         mongoUri: process.env.MONGO_URI,
         mongoDb: process.env.MONGO_DB,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppUpload />
-    <AppDisplay />
+    <FormUpload />
+    <FormDisplay />
   </div>
 </template>

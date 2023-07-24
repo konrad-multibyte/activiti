@@ -3,17 +3,17 @@
     <div class="field">
       <label for="app">Upload app</label>
       <input
-        id="app"
+        id="form"
         ref="file"
         type="file"
-        accept="application/zip, application/octet-stream, application/x-zip-compressed, multipart/x-zip"
+        accept="application/json"
         name="file"
         required
         @change="selectFile"
       >
     </div>
     <div class="field">
-      <button class="button button-primar">
+      <button class="button button-primary">
         Upload
       </button>
     </div>
@@ -23,11 +23,13 @@
 <script>
 export default {
     name: 'AppUpload',
+
     data () {
         return {
             file: ''
         }
     },
+
     methods: {
         selectFile () {
             this.file = this.$refs.file.files[0]
@@ -36,14 +38,14 @@ export default {
             const formData = new FormData()
             formData.append('file', this.file)
             try {
-                await $fetch('/api/app', {
+                await $fetch('/api/form', {
                     method: 'post',
                     body: formData
                 })
             } catch (error) {
                 console.log(error)
             }
-            refreshNuxtData()
+            refreshNuxtData('getFormsForFormDisplay')
         }
     }
 }
