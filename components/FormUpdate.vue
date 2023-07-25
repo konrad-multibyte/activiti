@@ -24,7 +24,10 @@
 export default {
     name: 'UpdateForm',
     props: {
-        formid: string
+        formId: {
+            type: String,
+            required: true
+        }
     },
     data () {
         return {
