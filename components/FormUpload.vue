@@ -1,7 +1,7 @@
 <template>
   <form action="" enctype="multipart/form-data" @submit.prevent="sendFile">
     <div class="field">
-      <label for="app">Upload app</label>
+      <label for="form">Upload form</label>
       <input
         id="form"
         ref="file"
@@ -13,7 +13,7 @@
       >
     </div>
     <div class="field">
-      <button class="button button-primary">
+      <button type="submit" class="button button-primary">
         Upload
       </button>
     </div>

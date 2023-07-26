@@ -1,23 +1,29 @@
 <template>
-  <form action="" enctype="multipart/form-data" :data-form-id="formId" @submit.prevent="sendFile">
-    <div class="field">
-      <label for="app">Update form</label>
-      <input
-        id="form"
-        ref="file"
-        type="file"
-        accept="application/json"
-        name="file"
-        required
-        @change="selectFile"
-      >
-    </div>
-    <div class="field">
-      <button class="button button-primary">
-        Update
-      </button>
-    </div>
-  </form>
+  <dialog id="updateForm">
+    <form action="" enctype="multipart/form-data" :data-form-id="formId" class="" @submit.prevent="sendFile">
+      <div class="field">
+        <label for="app">New form</label>
+        <input
+          id="form"
+          ref="file"
+          class="form-file-picker field"
+          type="file"
+          accept="application/json"
+          name="file"
+          required
+          @change="selectFile"
+        >
+      </div>
+      <div class="field">
+        <button type="submit" class="button button-primary" onclick="updateForm.close()">
+          Update Form
+        </button>
+      </div>
+    </form>
+  </dialog>
+  <button class="button button-primary" onclick="updateForm.showModal()">
+    Update Form
+  </button>
 </template>
 
 <script>

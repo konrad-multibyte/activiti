@@ -60,6 +60,10 @@ export class Field {
     numberOfColumns!: number
     // eslint-disable-next-line no-use-before-define
     fields!: Field[]
+
+    getFieldsIds () {
+        return this.fields.map(field => field.id)
+    }
 }
 
 export class EditorJson {
@@ -76,16 +80,13 @@ export class EditorJson {
     gridsterForm!: boolean
 }
 
-export default class Form extends Document {
-    _id: ObjectId
+export default class Form {
     referenceId: number | null | undefined
     name: string
     description: string | null | undefined
     editorJson: EditorJson
 
-    constructor (_id: ObjectId, name: string, editorJson: EditorJson) {
-        super()
-        this._id = _id
+    constructor (name: string, editorJson: EditorJson) {
         this.name = name
         this.editorJson = editorJson
     }
