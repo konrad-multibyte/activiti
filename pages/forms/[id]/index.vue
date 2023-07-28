@@ -7,9 +7,6 @@
     <p v-if="form.description != null || form.description != ''" class="from-description">
       {{ form.description }}
     </p>
-    <p v-if="form.description === ''" class="form-description-none">
-      No description provided.
-    </p>
     <div class="form-action-buttons">
       <a href="/forms/">
         <button class="form-action-button button button-danger" :data-form-id="`${form._id}`" @click="deleteForm">

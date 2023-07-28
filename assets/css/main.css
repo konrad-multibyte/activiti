@@ -91,12 +91,10 @@
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     outline: 0px;
-    margin: 0px 0px 0px 8px;
     user-select: none;
     vertical-align: middle;
     appearance: none;
     text-decoration: none;
-    font-weight: 500;
     box-shadow: none;
     border: none;
     font-family: "Ubuntu Mono Bold", sans-serif, serif;
@@ -138,12 +136,10 @@ input.form-file-picker[type="file"]::file-selector-button {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     outline: 0px;
-    margin: 0px 0px 0px 8px;
     user-select: none;
     vertical-align: middle;
     appearance: none;
     text-decoration: none;
-    font-weight: 500;
     box-shadow: none;
     border: none;
     font-family: "Ubuntu Mono Bold", sans-serif, serif;
@@ -162,6 +158,18 @@ input.form-file-picker[type="file"]::file-selector-button {
 
 input.form-file-picker[type="file"]::file-selector-button:hover {
     background-color: rgb(34, 108, 194);
+}
+
+.dialog > dialog > form {
+    width: 100%;
+    height: 100%;
+}
+
+
+.form-action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
 .form-preview-tabs li {
@@ -185,6 +193,39 @@ input.form-file-picker[type="file"]::file-selector-button:hover {
     .display-cards {
         display: block;
     }
+}
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.dialog-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dialog-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: "Ubuntu Mono Bold", sans-serif, serif;
+}
+
+.dialog-close {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+
+.dialog > #updateForm {
+    width: 500px;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

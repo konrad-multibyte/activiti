@@ -23,15 +23,57 @@
     </ul>
   </div>
   <div v-show="isVisible" class="form-preview-representation">
-    <div v-for="field in form.editorJson.fields" :key="field">
+    <div v-for="field of form.editorJson.fields" :key="field">
       <div v-if="field.tab">
         <div v-if="field.tab === selectedTabId">
           <h4>{{ field.name }}</h4>
+          <div class="quick-test-component">
+            <dialog id="updateForm">
+              <div class="dialog">
+                <div class="dialog-head">
+                  <p class="dialog-title">
+                    Quick Test
+                  </p>
+                  <svg
+                    class="dialog-close"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                    onclick="updateForm.close()"
+                  >
+                    <path
+                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </div>
+                <div class="dialog-body">
+                  <form v-show="isQuickTestFormVisible" id="containerSpecForm" class="form" @submit.prevent="quickTestSubmit()">
+                    <button type="submit" class="button button-primary" @click="isQuickTestFormVisible = false">
+                      Test
+                    </button>
+                    <button type="reset" class="button button-primary" @click="isQuickTestFormVisible = false">
+                      Abort
+                    </button>
+                    <textarea name="column" />
+                  </form>
+                </div>
+              </div>
+            </dialog>
+            <button v-show="!isQuickTestFormVisible" class="button button-primary" @click="isQuickTestFormVisible = true">
+              Quick Test
+            </button>
+          </div>
           <p>class: {{ field.className }}</p>
           <div v-if="field.fieldType === 'ContainerRepresentation'">
-            <div v-for="childFieldCollection in field.fields" :key="childFieldCollection">
+            <div v-for="childFieldCollection of field.fields" :key="childFieldCollection">
               <div v-if="childFieldCollection.length > 0">
-                <div v-for="childField in childFieldCollection" :key="childField">
+                <div v-for="childField of childFieldCollection" :key="childField">
+                  <p>
+                    ID: {{ childField.id }}
+                  </p>
+                  <p>
+                    Label: {{ childField.name }}
+                  </p>
                   <p>
                     {{ childField }}
                   </p>
@@ -45,9 +87,29 @@
         <h4>{{ field.name }}</h4>
         <p>class: {{ field.className }}</p>
         <div v-if="field.fieldType === 'ContainerRepresentation'">
-          <div v-for="childFieldCollection in field.fields" :key="childFieldCollection">
+          <div class="quick-test-component">
+            <button v-show="!isQuickTestFormVisible" class="button button-primary" @click="isQuickTestFormVisible = true">
+              Quick Test
+            </button>
+            <form v-show="isQuickTestFormVisible" id="containerSpecForm" class="form" @submit.prevent="uploadForm()">
+              <button type="submit" class="button button-primary" @click="isQuickTestFormVisible = false">
+                Test
+              </button>
+              <button type="reset" class="button button-primary" @click="isQuickTestFormVisible = false">
+                Abort
+              </button>
+              <textarea name="column" />
+            </form>
+          </div>
+          <div v-for="childFieldCollection of field.fields" :key="childFieldCollection">
             <div v-if="childFieldCollection.length > 0">
-              <div v-for="childField in childFieldCollection" :key="childField">
+              <div v-for="childField of childFieldCollection" :key="childField">
+                <p>
+                  ID: {{ childField.id }}
+                </p>
+                <p>
+                  Label: {{ childField.name }}
+                </p>
                 <p>
                   {{ childField }}
                 </p>
@@ -73,6 +135,7 @@ export default {
     data () {
         return {
             isVisible: false,
+            isQuickTestFormVisible: false,
             selectedTabId: 'tab1'
         }
     },
