@@ -1,5 +1,3 @@
-import { Document, ObjectId } from 'mongodb'
-
 export class Outcomes {
     id: number | null | undefined
     name: string
@@ -13,9 +11,12 @@ export class Tab {
     id: string | null | undefined
     title: string
     visibilityCondition: object | null | undefined
+    static tabIndex = 1
 
     constructor (title: string) {
+        this.id = `tab${Tab.tabIndex}`
         this.title = title
+        Tab.tabIndex++
     }
 }
 
@@ -61,13 +62,17 @@ export class Field {
     // eslint-disable-next-line no-use-before-define
     fields!: Field[]
 
+    constructor (o: object) {
+        Object.assign(this, o)
+    }
+
     getFieldsIds () {
         return this.fields.map(field => field.id)
     }
 }
 
 export class EditorJson {
-    tabs!: Tab[]
+    tabs: Tab[]
     fields!: Field[]
     outcomes!: Outcomes[]
     javascriptEvents!: object[]
@@ -78,6 +83,11 @@ export class EditorJson {
     variables!: object[]
     customFieldsValueInfo!: object
     gridsterForm!: boolean
+
+    constructor () {
+        this.tabs = []
+        this.fields = []
+    }
 }
 
 export default class Form {
@@ -86,8 +96,9 @@ export default class Form {
     description: string | null | undefined
     editorJson: EditorJson
 
-    constructor (name: string, editorJson: EditorJson) {
+    constructor (name: string) {
         this.name = name
-        this.editorJson = editorJson
+        this.description = ''
+        this.editorJson = new EditorJson()
     }
 }
