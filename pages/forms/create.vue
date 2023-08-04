@@ -26,9 +26,9 @@
       <div class="activiti-tabs">
         <h2>Tabs</h2>
         <div class="activiti-tabs-display">
-          <ul :key="activitiForm.editorJson.tabs" class="form-preview-tabs">
+          <ul :key="activitiForm.formDefinition.tabs" class="form-preview-tabs">
             <li
-              v-for="tab in activitiForm.editorJson.tabs"
+              v-for="tab in activitiForm.formDefinition.tabs"
               :id="tab.id"
               :key="tab.id"
               class="form-preview-tab"
@@ -58,8 +58,22 @@
           </form>
         </div>
         <div class="activiti-fields">
+          <button v-show="selectedTabId != null && !addFieldsToAllTabsVisible" class="button button-primary" @click="addFieldsToAllTabsVisible = ref(true)">
+            add containers to all tabs
+          </button>
+          <form v-show="addFieldsToAllTabsVisible" id="addTabForm" action="#" class="form" @submit.prevent="addFieldToAllTabs">
+            <div class="form-field">
+              <label for="fieldCsvTable">Field CSV Table</label>
+              <textarea id="fieldCsvTable" class="form-control" name="fieldCsv" />
+            </div>
+            <div class="form-field">
+              <button type="submit" class="form-field button button-primary" @click="addFieldsToAllTabsVisible = ref(false)">
+                Add Containers
+              </button>
+            </div>
+          </form>
           <button v-show="selectedTabId != null && !addFieldToTabVisible" id="addContainerToTab" class="button button-primary" @click="addFieldToTabVisible = ref(true)">
-            Add containers to {{ selectedTabTitle }} tab
+            Add containers to "{{ selectedTabTitle }}" tab
           </button>
           <form v-show="addFieldToTabVisible" id="addTabForm" action="#" class="form" @submit.prevent="addFieldToTab">
             <div class="form-field">
@@ -72,11 +86,13 @@
               </button>
             </div>
           </form>
-          <div v-for="field of form.editorJson.fields" :key="field">
+          <div v-for="field of activitiForm.formDefinition.fields" :key="field.id">
             <div v-if="field.tab">
               <div v-if="field.tab === selectedTabId">
-                <p>class: {{ field.className }}</p>
                 <div v-if="field.fieldType === 'ContainerRepresentation'">
+                  <h4>{{ field.fieldType }}: {{ field.name }}</h4>
+                  <p>id: {{ field.id }}</p>
+                  <p>class: {{ field.className }}</p>
                   <div v-for="childFieldCollection of field.fields" :key="childFieldCollection">
                     <div v-if="childFieldCollection.length > 0">
                       <div v-for="childField of childFieldCollection" :key="childField">
@@ -92,10 +108,29 @@
                       </div>
                     </div>
                   </div>
+                  <div class="container-representation-buttons">
+                    <button v-show="selectedTabId != null && !addFieldsToContainerVisible" class="button button-primary" @click="addFieldsToContainerVisible = ref(true)">
+                      add fields to "{{ field.name }}" container
+                    </button>
+                    <form v-show="addFieldsToContainerVisible" id="addTabForm" action="#" class="form" @submit.prevent="addFieldsToContainer">
+                      <div class="form-field hidden">
+                        <input id="containerId" class="form-control" name="containerId" :value="activitiForm.formDefinition.fields.indexOf(field)" readonly>
+                      </div>
+                      <div class="form-field">
+                        <label for="fieldCsvTable">Field CSV Table</label>
+                        <textarea id="fieldCsvTable" class="form-control" name="fieldCsv" />
+                      </div>
+                      <div class="form-field">
+                        <button type="submit" class="form-field button button-primary" @click="addFieldsToContainerVisible = ref(false)">
+                          add fields
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-            <div v-show="isVisible" v-else>
+            <div v-else>
               <h4>{{ field.name }}</h4>
               <p>class: {{ field.className }}</p>
               <div v-if="field.fieldType === 'ContainerRepresentation'">
@@ -124,7 +159,7 @@
 </template>
 
 <script>
-import Form, { Tab } from '../../types/Form'
+import Form, { Tab, Field, FieldLayout } from '../../types/Form'
 export default {
     name: 'CreateForm',
     data () {
@@ -134,6 +169,8 @@ export default {
             activitiTabsUpdate: ref(0),
             addTabFormVisible: ref(false),
             addFieldToTabVisible: ref(false),
+            addFieldsToAllTabsVisible: ref(false),
+            addFieldsToContainerVisible: ref(false),
             selectedTabId: ref(null),
             selectedTabTitle: ref(null)
         }
@@ -158,6 +195,20 @@ export default {
                     objects.push(obj)
                 }
             }
+            objects.forEach((obj) => {
+                if (obj.options != null) {
+                    obj.options = JSON.parse(obj.options)
+                }
+                if (obj.params != null) {
+                    obj.params = JSON.parse(obj.params)
+                }
+                if (obj.layout != null) {
+                    obj.layout = new FieldLayout(JSON.parse(obj.layout))
+                }
+                if (obj.visibilityCondition != null) {
+                    obj.visibilityCondition = JSON.parse(obj.visibilityCondition)
+                }
+            })
             return objects
         },
         createForm (submitEvent) {
@@ -175,11 +226,11 @@ export default {
                     for (let i = 0; i < header.length; i++) {
                         obj[header[i]] = cells[i] ? cells[i] : undefined
                     }
-                    this.activitiForm.editorJson.tabs.push(new Tab(obj.title))
+                    this.activitiForm.formDefinition.tabs.push(new Tab(obj.title))
                 }
             }
-            this.selectedTabId = this.activitiForm.editorJson.tabs[0].id
-            this.selectedTabTitle = this.activitiForm.editorJson.tabs[0].title
+            this.selectedTabId = this.activitiForm.formDefinition.tabs[0].id
+            this.selectedTabTitle = this.activitiForm.formDefinition.tabs[0].title
             document.getElementById(this.selectedTabId).classList.add('active')
         },
         selectTab (clickEvent) {
@@ -209,7 +260,25 @@ export default {
         addFieldToTab (submitEvent) {
             const objects = this.parseCsv(submitEvent.target.elements.fieldCsv.value)
             objects.forEach((obj) => { obj.tab = this.selectedTabId })
-            this.activitiForm.editorJson.fields.push(objects)
+            for (const obj of objects) {
+                this.activitiForm.formDefinition.fields.push(new Field(obj))
+            }
+            console.log(objects)
+        },
+        addFieldToAllTabs (submitEvent) {
+            const objects = this.parseCsv(submitEvent.target.elements.fieldCsv.value)
+            for (const obj of objects) {
+                this.activitiForm.formDefinition.fields.push(new Field(obj))
+            }
+            console.log(objects)
+        },
+        addFieldsToContainer (submitEvent) {
+            const objects = this.parseCsv(submitEvent.target.elements.fieldCsv.value)
+            const containerId = submitEvent.target.elements.containerId.value
+            for (const obj of objects) {
+                this.activitiForm.formDefinition.fields[containerId].fields['1'].push(new Field(obj))
+            }
+            console.log(this.activitiForm)
         }
     }
 }
