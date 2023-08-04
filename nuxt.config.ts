@@ -10,5 +10,12 @@ export default defineNuxtConfig({
         s3Key: process.env.S3_KEY,
         s3AccessKey: process.env.S3_ACCESSKEY,
         s3Bucket: process.env.S3_BUCKET
+    },
+    vite: {
+        server: {
+            hmr: {
+                protocol: 'wss'
+            }
+        }
     }
 })
