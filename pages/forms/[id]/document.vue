@@ -40,9 +40,9 @@
 <script setup lang="ts">
 const route = useRoute()
 const { data: form } = useFetch(`/api/form/${route.params.id}`,
-  {
-    key: 'getForm',
-    method: 'GET'
-  })
+    {
+        key: 'getForm',
+        method: 'GET'
+    })
 
 </script>
