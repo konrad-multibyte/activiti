@@ -47,7 +47,7 @@
         <div v-show="addTabFormVisible">
           <form id="addTabForm" action="#" class="form" @submit.prevent="addTabFormSumbit">
             <div class="form-field">
-              <label for="tabCsvTable">Tab CSV Table</label>
+              <label for="tabCsvTable">Tab TSV Table</label>
               <textarea id="tabCsvTable" class="form-control" name="tabCsv" />
             </div>
             <div class="form-field">
@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import Form, { Tab, Field, FieldLayout } from '../../types/Form'
+import Form, { Tab, Field, FieldLayout, ContainerRepresentation } from '../../../types/Form'
 export default {
     name: 'CreateForm',
     data () {
@@ -261,14 +261,14 @@ export default {
             const objects = this.parseCsv(submitEvent.target.elements.fieldCsv.value)
             objects.forEach((obj) => { obj.tab = this.selectedTabId })
             for (const obj of objects) {
-                this.activitiForm.formDefinition.fields.push(new Field(obj))
+                this.activitiForm.formDefinition.fields.push(new ContainerRepresentation(obj))
             }
             console.log(objects)
         },
         addFieldToAllTabs (submitEvent) {
             const objects = this.parseCsv(submitEvent.target.elements.fieldCsv.value)
             for (const obj of objects) {
-                this.activitiForm.formDefinition.fields.push(new Field(obj))
+                this.activitiForm.formDefinition.fields.push(new ContainerRepresentation(obj))
             }
             console.log(objects)
         },

@@ -62,7 +62,6 @@ export class Field {
     row!: number
     col!: number
     visibilityCondition: object | null | undefined
-    fields: object | null | undefined = null
 
     constructor (o: object) {
         Object.assign(this, o)
@@ -80,17 +79,26 @@ export class Field {
 }
 
 export class ContainerRepresentation extends Field {
-    numberOfColumns: number
-    fields: object | null | undefined = null
+    numberOfColumns!: number
+    fields = {
+        1: [],
+        2: []
+    }
 
     constructor (o: object) {
         super(o)
         Object.assign(this, o)
+        this.required = Boolean(this.required).valueOf()
+        this.readOnly = Boolean(this.readOnly).valueOf()
+        this.overrideId = Boolean(this.overrideId).valueOf()
+        this.colspan = Number(this.colspan).valueOf()
+        this.minLength = Number(this.minLength).valueOf()
+        this.maxLength = Number(this.maxLength).valueOf()
+        this.sizeX = Number(this.sizeX).valueOf()
+        this.sizeY = Number(this.sizeY).valueOf()
+        this.row = Number(this.row).valueOf()
+        this.col = Number(this.col).valueOf()
         this.numberOfColumns = Number(this.numberOfColumns).valueOf()
-        this.fields = {
-            1: [],
-            2: []
-        }
     }
 }
 

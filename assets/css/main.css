@@ -91,9 +91,7 @@
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     outline: 0px;
-    user-select: none;
     vertical-align: middle;
-    appearance: none;
     text-decoration: none;
     box-shadow: none;
     border: none;
@@ -105,7 +103,6 @@
     min-width: 105px;
     line-height: 1;
     text-transform: capitalize;
-    transition: none 0s ease 0s;
     color: rgb(255, 255, 255);
     padding: 2px 20px;
 }
@@ -116,6 +113,7 @@
 
 .button-primary:hover {
     background-color: rgb(34, 108, 194);
+    transition: background-color 400ms ease-in-out;
 }
 
 .button-danger {
