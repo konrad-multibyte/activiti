@@ -18,6 +18,11 @@
     src: url("UbuntuMono-Regular.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Source Sans 3";
+    src: url();
+}
+
 * {
     font-family: "Ubuntu Mono", sans-serif, serif;
 }
@@ -86,12 +91,53 @@
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     outline: 0px;
-    margin: 0px 0px 0px 8px;
+    vertical-align: middle;
+    text-decoration: none;
+    box-shadow: none;
+    border: none;
+    font-family: "Ubuntu Mono Bold", sans-serif, serif;
+    border-radius: 1px;
+    cursor: pointer;
+    font-size: 1rem;
+    min-height: 34px;
+    min-width: 105px;
+    line-height: 1;
+    text-transform: capitalize;
+    color: rgb(255, 255, 255);
+    padding: 2px 20px;
+}
+
+.button-primary {
+    background-color: rgb(54, 131, 220);
+}
+
+.button-primary:hover {
+    background-color: rgb(34, 108, 194);
+    transition: background-color 400ms ease-in-out;
+}
+
+.button-danger {
+    background-color: rgb(220, 54, 54);
+}
+
+.button-danger:hover {
+    background-color: rgb(194, 54, 54);
+}
+
+input.form-file-picker[type="file"]::file-selector-button {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0px;
     user-select: none;
     vertical-align: middle;
     appearance: none;
     text-decoration: none;
-    font-weight: 500;
     box-shadow: none;
     border: none;
     font-family: "Ubuntu Mono Bold", sans-serif, serif;
@@ -108,11 +154,76 @@
     padding: 2px 20px;
 }
 
+input.form-file-picker[type="file"]::file-selector-button:hover {
+    background-color: rgb(34, 108, 194);
+}
+
+.dialog > dialog > form {
+    width: 100%;
+    height: 100%;
+}
+
+
+.form-action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.form-preview-tabs li {
+    position: relative;
+    width: auto;
+    border: 0;
+    background-color: transparent;
+    float: none;
+    display: inline-block;
+    margin-right: 2.5rem;
+    padding-bottom: 5px;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+}
+
+.form-preview-tabs li.active {
+    border-color: #0097d7;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .display-cards {
         display: block;
     }
+}
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.dialog-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dialog-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: "Ubuntu Mono Bold", sans-serif, serif;
+}
+
+.dialog-close {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+
+.dialog > #updateForm {
+    width: 500px;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
