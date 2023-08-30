@@ -27,6 +27,43 @@
     font-family: "Ubuntu Mono", sans-serif, serif;
 }
 
+pre.tab {
+    display: inline;
+}
+
+main.responsive {
+    margin: 1em 8em 0 8em;
+}
+
+.card {
+    padding: 1em;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.card-nav {
+    display: flex;
+    gap: 1em;
+}
+
+.card-nav > a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.card-nav .card {
+    border: 1px solid #e8edf1;
+    width: 25%;
+    padding: 1em;
+}
+
+.card-nav .card:hover {
+    border: 1px solid #999;
+    box-shadow: 0 0 5px #888;
+}
+
 .navbar {
     display: flex;
     flex-direction: row;

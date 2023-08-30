@@ -1,0 +1,112 @@
+<template>
+  <main class="responsive">
+    <div v-show="fieldsTableInputVisible" class="cards">
+      <div class="card w-100">
+        <form class="form" @submit.prevent="confluenceInput">
+          <div class="form-input">
+            <label for="headingText">Heading name</label>
+            <input id="headingText" type="text" name="headingText" requred>
+          </div>
+          <div class="form-input">
+            <label for="confluenceInput">
+              Field table
+            </label>
+            <textarea id="confluenceInput" name="fieldTable" required />
+            <small>
+              Field table from Confluence
+            </small>
+          </div>
+          <div class="form-input">
+            <button class="button button-primary" type="submit">
+              Add Section
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div>
+      <div v-for="section of displayableSections" :key="section">
+        <h2>{{ section.name }}</h2>
+        <div v-for="field of section.fields" :key="field">
+          <div v-if="field.afterIsNewLine">
+            <span>{{ field.before }}</span><br><span>{{ field.after }}</span>
+          </div>
+          <div v-else>
+            <span>{{ field.before }}</span><pre class="tab">&Tab;</pre><span>{{ field.after }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</template>
+
+<script>
+export default {
+    name: 'CreateDocument',
+    data: function () {
+        return {
+            displayableSections: ref([]),
+            fieldsTableInputVisible: ref(true)
+        }
+    },
+    methods: {
+        parseTsv (tsvString) {
+            const table = tsvString.split('\n')
+            const header = table.shift().trim().split('\t')
+            const objects = []
+            for (const row of table) {
+                if (row.trim() !== '') {
+                    const obj = {}
+                    const cells = row.trim().split('\t')
+                    for (let i = 0; i < header.length; i++) {
+                        obj[header[i]] = cells[i] ? cells[i] : undefined
+                    }
+                    objects.push(obj)
+                }
+            }
+            return objects
+        },
+        textualizeFields (confluenceFields) {
+            const fields = []
+            confluenceFields.forEach((field) => {
+                if (field['PDF Label'] !== 'N/A') {
+                    if (field.Displayed === 'Always' || field['Required or optional?'] === 'Required') {
+                        fields.push({
+                            before: `${field['PDF Label']}`,
+                            after: `<<[variables.get("${field['Label ID']}", "")]>>`,
+                            bleeding: false,
+                            afterIsNewLine: /(multi).*(line).*(text)/i.test(field['Form component'])
+                        })
+                    } else {
+                        fields.push({
+                            before: `${field['PDF Label']}`,
+                            after: `<<[variables.get("${field['Label ID']}", "")]>><</if>>`,
+                            bleeding: true,
+                            bleed: `<<if [!variables.get("${field['Label ID']}").equals("")]>>`,
+                            afterIsNewLine: /(multi).*(line).*(text)/i.test(field['Form component'])
+                        })
+                    }
+                }
+            })
+            for (let i = 0; i < fields.length; i++) {
+                const next = fields[i + 1]
+                if (next == null) {
+                    break
+                }
+                if (next.bleeding) {
+                    fields[i].after += next.bleed
+                }
+            }
+            return fields
+        },
+        confluenceInput (submitEvent) {
+            const confluenceFields = this.parseTsv(submitEvent.target.elements.fieldTable.value)
+            const fields = this.textualizeFields(confluenceFields)
+            this.displayableSections.push({
+                name: submitEvent.target.elements.headingText.value,
+                fields
+            })
+        }
+    }
+}
+</script>
