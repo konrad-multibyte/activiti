@@ -24,7 +24,7 @@
         </form>
       </div>
     </div>
-    <div>
+    <div class="word-document-preview">
       <div v-for="section of displayableSections" :key="section">
         <h2>{{ section.name }}</h2>
         <div v-for="field of section.fields" :key="field">
