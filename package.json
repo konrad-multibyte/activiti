@@ -14,17 +14,18 @@
         "coverage": "vitest run --coverage"
     },
     "devDependencies": {
-        "@babel/eslint-parser": "^7.22.10",
+        "@babel/eslint-parser": "^7.22.11",
         "@nuxt/devtools": "latest",
-        "@nuxtjs/eslint-config-typescript": "^12.0.0",
+        "@nuxtjs/eslint-config-typescript": "^12.1.0",
         "babel-eslint": "^10.1.0",
         "eslint": "^8.47.0",
-        "nuxt": "^3.6.5",
-        "vitest": "^0.34.2"
+        "nuxt": "^3.7.0",
+        "vitest": "^0.34.3"
     },
     "dependencies": {
-        "@aws-sdk/client-s3": "^3.397.0",
-        "@aws-sdk/lib-storage": "^3.397.0",
-        "mongodb": "^5.7.0"
+        "@aws-sdk/client-s3": "^3.400.0",
+        "@aws-sdk/lib-storage": "^3.400.0",
+        "mongodb": "^6.0.0"
+
     }
 }
