@@ -5,24 +5,37 @@
         <h3>
           New Document
         </h3>
+        <div class="cute-labels">
+          <span class="cute-label info">In Development</span>
+        </div>
         <p>
           Create Microsoft Word document to be used as a template in Activiti Generate document task.
         </p>
       </a>
-      <a class="card" href="/documents/clearscript/new">
+      <a class="card" href="/documents/template">
         <h3>
-          New clear script
+          New template
         </h3>
+        <div class="cute-labels">
+          <span class="cute-label info">In Development</span>
+        </div>
         <p>
-          Create script task for clearing form input based on logic selected.
+          Upload document template to generate a full document.
         </p>
       </a>
     </div>
+    <h3>
+      Documents
+    </h3>
+    <div class="card-nav">
+      <div class="cute-labels">
+        <span class="cute-label info">Menu in Development</span>
+      </div>
+    </div>
+    <TemplateDocumentNav />
   </main>
 </template>
 
-<script>
-export default {
-    name: 'Documents'
-}
+<script setup lang="ts">
+import TemplateDocumentNav from '~/components/templatedocument/TemplateDocumentNav.vue'
 </script>

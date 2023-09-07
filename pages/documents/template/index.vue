@@ -1,7 +1,9 @@
 <template>
-  <DocumentTemplateUpload />
+  <div>
+    <TemplateDocumentUpload />
+  </div>
 </template>
 
-<script>
-
+<script setup lang="ts">
+import TemplateDocumentUpload from '~/components/templatedocument/TemplateDocumentUpload.vue'
 </script>

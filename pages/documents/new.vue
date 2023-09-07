@@ -2,7 +2,7 @@
   <main class="responsive">
     <div v-show="fieldsTableInputVisible" class="cards">
       <div class="card w-100">
-        <form class="form" @submit.prevent="confluenceInput">
+        <form class="form-flex-column" @submit.prevent="confluenceInput">
           <div class="form-input">
             <label for="headingText">Heading name</label>
             <input id="headingText" type="text" name="headingText" requred>
@@ -15,6 +15,21 @@
             <small>
               Field table from Confluence
             </small>
+          </div>
+          <div class="form-input-group">
+            <p class="form-input-header">
+              Document Version
+            </p>
+            <div class="form-input-flex-row">
+              <div class="form-input">
+                <label for="documentVersion1">Version 1</label>
+                <input id="documentVersion1" type="checkbox" name="v1">
+              </div>
+              <div class="form-input">
+                <label for="documentVersion2">Version 2</label>
+                <input id="documentVersion2" type="checkbox" name="v2" checked>
+              </div>
+            </div>
           </div>
           <div class="form-input">
             <button class="button button-primary" type="submit">

@@ -198,9 +198,63 @@ input.form-file-picker[type="file"]::file-selector-button {
     padding: 2px 20px;
 }
 
+.form-flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    max-width: 12em;
+}
+
+.form-input.textarea {
+    max-width: none;
+}
+
+.form-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.form-input-group .form-input-header {
+    margin: 0;
+
+}
+
+.form-input-flex-row {
+    display: flex;
+    gap: 0.5em;
+}
+
+.form-input-flex-row .form-input {
+    display: inline;
+}
+
 input.form-file-picker[type="file"]::file-selector-button:hover {
     background-color: rgb(34, 108, 194);
 }
+
+.cute-labels {
+
+}
+
+.cute-label {
+    color: white;
+    padding: 8px;
+    text-transform: capitalize;
+    padding: 0.5em;
+    border-radius: 0.25em;
+}
+  
+.success {background-color: #04AA6D;}
+.info {background-color: #2196F3;}
+.warning {background-color: #ff9800;}
+.danger {background-color: #f44336;}
+.other {background-color: #e7e7e7; color: black;} 
 
 .dialog > dialog > form {
     width: 100%;
