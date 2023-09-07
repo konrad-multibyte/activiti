@@ -281,7 +281,7 @@ input.form-file-picker[type="file"]::file-selector-button:hover {
     }
    
     main.responsive  {
-        margin: 1em 1em 0 1em;
+        margin: 1em 0.5em 0 0.5em;
     }
 }
 
