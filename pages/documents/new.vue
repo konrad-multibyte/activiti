@@ -1,7 +1,14 @@
 <template>
   <main class="responsive">
-    <div v-show="fieldsTableInputVisible" class="cards">
-      <div class="card w-100">
+    <div class="cards">
+      <button class="button button-primary" @click="isFormVisibleV1 = !isFormVisibleV1; isFormVisibleV2 = ref(false)">
+        New V1 Section
+      </button>
+      <button class="button button-primary" @click="isFormVisibleV2 = !isFormVisibleV2; isFormVisibleV1 = ref(false)">
+        New V2 Section
+      </button>
+      <div v-show="isFormVisibleV1" class="card">
+        <h3>Add version 1 section</h3>
         <form class="form-flex-column" @submit.prevent="confluenceInput">
           <div class="form-input">
             <label for="headingText">Heading name</label>
@@ -61,7 +68,9 @@ export default {
     data: function () {
         return {
             displayableSections: ref([]),
-            fieldsTableInputVisible: ref(true)
+            fieldsTableInputVisible: ref(true),
+            isFormVisibleV1: ref(false),
+            isFormVisibleV2: ref(false)
         }
     },
     methods: {
@@ -81,7 +90,7 @@ export default {
             }
             return objects
         },
-        textualizeFields (confluenceFields) {
+        textualizeFieldsV1 (confluenceFields) {
             const fields = []
             confluenceFields.forEach((field) => {
                 if (field['PDF Label'] !== 'N/A') {
@@ -116,10 +125,21 @@ export default {
         },
         confluenceInput (submitEvent) {
             const confluenceFields = this.parseTsv(submitEvent.target.elements.fieldTable.value)
-            const fields = this.textualizeFields(confluenceFields)
+            const fields = this.textualizeFieldsV1(confluenceFields)
             this.displayableSections.push({
                 name: submitEvent.target.elements.headingText.value,
-                fields
+                tableName: '',
+                fields,
+                version: 1
+            })
+        },
+        confluenceInputV2 (submitEvent) {
+            const confluenceFields = this.parseTsv(submitEvent.target.elements.fieldTable.value)
+            this.displayableSections.push({
+                name: submitEvent.target.elements.headingText.value,
+                tableName: submitEvent.target.elements.tableName.value,
+                fields: confluenceFields,
+                version: 2
             })
         }
     }

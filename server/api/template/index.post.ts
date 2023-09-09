@@ -3,7 +3,6 @@ import { saveDocument, saveFile } from '~/composables/firebase'
 
 export default defineEventHandler(async (event) => {
     const uploadFiles = await readMultipartFormData(event)
-
     if (uploadFiles !== undefined) {
         for (const file of uploadFiles) {
             console.log(file)

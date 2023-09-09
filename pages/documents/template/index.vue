@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <main class="responsive">
     <TemplateDocumentUpload />
-  </div>
+    <TemplateDocumentNav />
+  </main>
 </template>
 
 <script setup lang="ts">
-import TemplateDocumentUpload from '~/components/templatedocument/TemplateDocumentUpload.vue'
 </script>

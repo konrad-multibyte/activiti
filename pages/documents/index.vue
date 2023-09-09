@@ -32,10 +32,8 @@
         <span class="cute-label info">Menu in Development</span>
       </div>
     </div>
-    <TemplateDocumentNav />
   </main>
 </template>
 
 <script setup lang="ts">
-import TemplateDocumentNav from '~/components/templatedocument/TemplateDocumentNav.vue'
 </script>
