@@ -3,7 +3,6 @@ import Form from '../../../types/Form'
 
 export default defineEventHandler(async (event) => {
     const uploadfiles = await readMultipartFormData(event)
-    console.log(uploadfiles)
     const config = useRuntimeConfig(event)
     if (uploadfiles !== undefined) {
         const client = new MongoClient(config.mongoUri, {
