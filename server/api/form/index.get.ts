@@ -1,22 +1,10 @@
-import { MongoClient } from 'mongodb'
-import Form from '../../../types/Form'
+import { getDocuments } from '~/composables/firebase'
 
-export default defineEventHandler(async (event) => {
-    const config = useRuntimeConfig(event)
-    const client = new MongoClient(config.mongoUri, {
-        serverApi: {
-            version: '1',
-            strict: true,
-            deprecationErrors: true
-        }
-    })
+export default defineEventHandler(async (_event) => {
     try {
-        await client.connect()
-        const forms = await client.db(config.mongoDb).collection<Form>('forms').find<Form>({}).toArray()
+        const forms = await getDocuments('forms')
         return forms
     } catch (error) {
         console.log(error)
-    } finally {
-        await client.close()
     }
 })

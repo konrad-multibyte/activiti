@@ -7,9 +7,9 @@
     Show
   </button>
   <div v-show="isVisible" class="form-preview">
-    <ul v-if="form.editorJson.tabs.length > 0" class="form-preview-tabs">
+    <ul v-if="form.data.editorJson.tabs.length > 0" class="form-preview-tabs">
       <li
-        v-for="tab in form.editorJson.tabs"
+        v-for="tab in form.data.editorJson.tabs"
         :id="`${tab.id}`"
         :key="tab"
         v-bind="tab.title"
@@ -23,7 +23,7 @@
     </ul>
   </div>
   <div v-show="isVisible" class="form-preview-representation">
-    <div v-for="field of form.editorJson.fields" :key="field">
+    <div v-for="field of form.data.editorJson.fields" :key="field">
       <div v-if="field.tab">
         <div v-if="field.tab === selectedTabId">
           <h4>{{ field.name }}</h4>

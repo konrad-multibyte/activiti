@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 // import { getAuth } from 'firebase/auth'
-import { getFirestore, doc, setDoc, getDocs, collection } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, getDocs, collection, getDoc, deleteDoc, updateDoc } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes } from 'firebase/storage'
 // import { getAnalytics } from 'firebase/analytics'
 
@@ -13,7 +13,9 @@ const firebaseConfig = {
     appId: process.env.FB_APP_ID,
     measurementId: process.env.FB_APP_ID
 }
+
 const app = initializeApp(firebaseConfig)
+
 // export const analytics = getAnalytics(app)
 // export const auth = getAuth(app)
 export const firestore = getFirestore(app)
@@ -29,7 +31,26 @@ export const saveDocument = (path: string, pathSegments: string, document: objec
     setDoc(documentRef, document)
 }
 
+// Firestore
 export async function getDocuments (c: string) {
     const querySnapshot = await getDocs(collection(firestore, c))
     return querySnapshot.docs.map(doc => doc.data())
+}
+
+export async function getDocument (collection: string, id: string) {
+    const documentRef = doc(firestore, collection, id)
+    const document = await getDoc(documentRef)
+    return document.data()
+}
+
+export async function updateDocument (collection: string, id: string, document: object) {
+    const documentRef = doc(firestore, collection, id)
+    const result = await updateDoc(documentRef, document)
+    return result
+}
+
+export async function deleteDocument (collection: string, id: string) {
+    const documentRef = doc(firestore, collection, id)
+    const result = await deleteDoc(documentRef)
+    return result
 }
