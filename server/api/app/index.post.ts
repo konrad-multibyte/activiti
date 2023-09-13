@@ -1,67 +1,21 @@
 import { randomUUID } from 'crypto'
-import { MongoClient, ServerApiVersion } from 'mongodb'
-import { Upload } from '@aws-sdk/lib-storage'
-import { S3Client } from '@aws-sdk/client-s3'
+import { saveDocument, saveFile } from '~/composables/firebase'
 
 export default defineEventHandler(async (event) => {
     const uploadfiles = await readMultipartFormData(event)
-    const config = useRuntimeConfig(event)
     if (uploadfiles !== undefined) {
-        if (!('filename' in uploadfiles[0])) {
-            throw createError({ statusCode: 400, statusMessage: 'Bad Request', message: 'The payload is not specified.' })
-        }
-        const client = new MongoClient(config.mongoUri, {
-            serverApi: {
-                version: ServerApiVersion.v1,
-                strict: true,
-                deprecationErrors: true
+        for (const file of uploadfiles) {
+            if (file.filename !== undefined) {
+                const id = randomUUID()
+                const extension = file.filename.split('.').pop()
+                saveFile(`${id}.${extension}`, file.data)
+                saveDocument('apps', id, {
+                    id,
+                    filename: file.filename,
+                    type: file.type,
+                    extension
+                })
             }
-        })
-        const files = []
-        try {
-            await client.connect()
-            for (const file of uploadfiles) {
-                try {
-                    const id = randomUUID()
-                    const key = `${id}.${file.filename?.split('.')[file.filename.split('.').length - 1]}`
-                    const response = await new Upload({
-                        client: new S3Client({
-                            endpoint: config.s3Uri,
-                            credentials: {
-                                accessKeyId: config.s3Key,
-                                secretAccessKey: config.s3AccessKey
-                            },
-                            region: config.s3Region
-                        }),
-                        params: {
-                            Bucket: config.s3Bucket,
-                            Key: key,
-                            Body: file.data
-                        }
-                    }).done()
-                    if (response instanceof Object && 'ETag' in response) {
-                        const metadata = {
-                            id,
-                            key,
-                            filename: file.filename,
-                            name: file.name,
-                            type: file.type,
-                            etag: response.ETag,
-                            bucket: response.Bucket,
-                            location: response.Location
-                        }
-                        await client.db(config.mongoDb).collection('apps').insertOne(metadata)
-                        files.push(metadata)
-                    } else {
-                        console.log('Upload failed.' + response)
-                    }
-                } catch (error) {
-                    console.log(error)
-                }
-            }
-            return { files }
-        } finally {
-            await client.close()
         }
     }
 })

@@ -13,7 +13,7 @@
       >
     </div>
     <div class="field">
-      <button class="button button-primar">
+      <button class="button button-primary">
         Upload
       </button>
     </div>
