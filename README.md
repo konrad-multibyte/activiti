@@ -1,6 +1,6 @@
-# Activiti
+# Activiti DevTools
 
-Activiti tools.
+Activiti development tools platform to speed up development and testing of Activiti forms, documents and apps.
 
 ## Setup
 
