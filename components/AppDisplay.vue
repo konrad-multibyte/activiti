@@ -1,6 +1,6 @@
 <template>
   <div class="display-cards">
-    <div v-for="app in apps?.apps" :key="app.id" class="display-card">
+    <div v-for="app in apps" :key="app" class="display-card">
       <div class="display-card-container">
         <p>{{ app.id }}</p>
         <p>{{ app.filename }}</p>
@@ -23,7 +23,7 @@ const { data: apps } = useFetch('/api/app')
 async function deleteFile (event: MouseEvent) {
     if (event.target != null && event.target instanceof Element) {
         const appId = event.target.getAttribute('data-app-id')
-        await useFetch(`/api/app/${appId}`, {
+        await $fetch(`/api/app/${appId}`, {
             method: 'DELETE'
         })
         refreshNuxtData()

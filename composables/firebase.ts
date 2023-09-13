@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
 // import { getAuth } from 'firebase/auth'
-import { getFirestore, doc, setDoc, getDocs, collection } from 'firebase/firestore'
-import { getStorage, ref, uploadBytes } from 'firebase/storage'
+import { getFirestore, doc, setDoc, getDocs, collection, getDoc, deleteDoc, updateDoc } from 'firebase/firestore'
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 // import { getAnalytics } from 'firebase/analytics'
 
 const firebaseConfig = {
@@ -13,17 +13,33 @@ const firebaseConfig = {
     appId: process.env.FB_APP_ID,
     measurementId: process.env.FB_APP_ID
 }
+
 const app = initializeApp(firebaseConfig)
+
 // export const analytics = getAnalytics(app)
 // export const auth = getAuth(app)
 export const firestore = getFirestore(app)
 export const storage = getStorage(app)
 
+// Firebase Storage
 export const saveFile = (fullPath: string, bytes: Buffer) => {
     const storageRef = ref(storage, fullPath)
     uploadBytes(storageRef, bytes.buffer)
 }
 
+export async function getFileDownloadUrl (fullPath: string) {
+    const storageRef = ref(storage, fullPath)
+    const downloadUrl = await getDownloadURL(storageRef)
+    return downloadUrl
+}
+
+export async function deleteFile (fullPath: string) {
+    const storageRef = ref(storage, fullPath)
+    const result = await deleteObject(storageRef)
+    return result
+}
+
+// Firestore
 export const saveDocument = (path: string, pathSegments: string, document: object) => {
     const documentRef = doc(firestore, path, pathSegments)
     setDoc(documentRef, document)
@@ -32,4 +48,23 @@ export const saveDocument = (path: string, pathSegments: string, document: objec
 export async function getDocuments (c: string) {
     const querySnapshot = await getDocs(collection(firestore, c))
     return querySnapshot.docs.map(doc => doc.data())
+}
+
+export async function getDocument (collection: string, id: string) {
+    const documentRef = doc(firestore, collection, id)
+    const document = await getDoc(documentRef)
+    return document.data()
+}
+
+export async function updateDocument (collection: string, id: string, document: object) {
+    const documentRef = doc(firestore, collection, id)
+    const result = await updateDoc(documentRef, document)
+    return result
+}
+
+export async function deleteDocument (collection: string, id: string) {
+    const documentRef = doc(firestore, collection, id)
+    const document = await getDoc(documentRef)
+    await deleteDoc(documentRef)
+    return document.data()
 }

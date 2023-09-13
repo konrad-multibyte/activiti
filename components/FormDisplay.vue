@@ -5,11 +5,11 @@
     </p>
   </div>
   <div v-else class="display-cards">
-    <div v-for="form in forms" :key="form._id" class="display-card">
-      <a :href="`/forms/${form._id}`" class="display-card-link">
+    <div v-for="form in forms" :key="form" class="display-card">
+      <a :href="`/forms/${form.id}`" class="display-card-link">
         <div class="display-card-container">
-          <p>{{ form._id }}</p>
-          <p>{{ form.name }}</p>
+          <p>{{ form.id }}</p>
+          <p>{{ form.data.name }}</p>
         </div>
       </a>
     </div>
