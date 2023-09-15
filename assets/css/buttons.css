@@ -1,0 +1,74 @@
+.button-primary {
+    background-color: var(--azure);
+}
+
+.button-primary:hover {
+    background-color: var(--azure-secondary);
+    transition: background-color 400ms ease-in-out;
+}
+
+.button-danger {
+    background-color: var(--red);
+}
+
+.button-danger:hover {
+    background-color: var(--reder);
+}
+
+.button {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0px;
+    vertical-align: middle;
+    text-decoration: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    font-size: 1rem;
+    min-height: 34px;
+    min-width: 105px;
+    line-height: 1;
+    text-transform: capitalize;
+    color: rgb(255, 255, 255);
+    padding: 2px 20px;
+}
+
+input.form-file-picker[type="file"]::file-selector-button {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0px;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    font-size: 1rem;
+    min-height: 34px;
+    min-width: 105px;
+    line-height: 1;
+    text-transform: capitalize;
+    transition: none 0s ease 0s;
+    background-color: rgb(54, 131, 220);
+    color: rgb(255, 255, 255);
+    padding: 2px 20px;
+}
+
+input.form-file-picker[type="file"]::file-selector-button:hover {
+    background-color: rgb(34, 108, 194);
+}

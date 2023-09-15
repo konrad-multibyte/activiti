@@ -1,6 +1,6 @@
 <template>
-  <div>
+  <main class="responsive">
     <FormUpload />
     <FormDisplay />
-  </div>
+  </main>
 </template>

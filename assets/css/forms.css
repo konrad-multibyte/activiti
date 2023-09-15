@@ -1,0 +1,35 @@
+.form-flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    max-width: 12em;
+}
+
+.form-input.textarea {
+    max-width: none;
+}
+
+.form-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.form-input-group .form-input-header {
+    margin: 0;
+
+}
+
+.form-input-flex-row {
+    display: flex;
+    gap: 0.5em;
+}
+
+.form-input-flex-row .form-input {
+    display: inline;
+}
