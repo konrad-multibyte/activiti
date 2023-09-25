@@ -1,0 +1,10 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: "Lato", "Ubuntu Mono", sans-serif;
+}
+
+.nav-item {
+    margin: 0.25em;
+}

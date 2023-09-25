@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import Form, { Tab, Field, FieldLayout, ContainerRepresentation } from '../../../types/Form'
+import Form, { Tab, Field, FieldLayout, ContainerRepresentation } from '../../types/Form'
 export default {
     name: 'CreateForm',
     data () {

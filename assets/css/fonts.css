@@ -1,0 +1,32 @@
+@font-face {
+    font-family: "Ubuntu Mono Bold";
+    src: local(),
+        url("UbuntuMono-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Ubuntu Mono Bold Italic";
+    src: local(),
+        url("UbuntuMono-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Ubuntu Mono Italic";
+    src: local(),
+        url("UbuntuMono-Italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Ubuntu Mono";
+    src: url("UbuntuMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "DejaVu Sans";
+    src: url("dejavusans.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("lato-regular-webfont.woff") format("woff");
+}

@@ -1,34 +1,24 @@
-@font-face {
-    font-family: "Ubuntu Mono Bold";
-    src: local(),
-         url("UbuntuMono-Bold.ttf") format("truetype");
-}
+@import url('~/assets/css/cards.css');
+@import url('~/assets/css/buttons.css');
+@import url('~/assets/css/navbar.css');
+@import url('~/assets/css/fonts.css');
 
-@font-face {
-    font-family: "Ubuntu Mono Bold Italic";
-    src: local(),
-         url("UbuntuMono-BoldItalic.ttf") format("truetype");
-}
+@import url('~/assets/css/responsive.css');
+@import url('~/assets/css/forms.css');
 
-@font-face {
-    font-family: "Ubuntu Mono Italic";
-    src: local(),
-         url("UbuntuMono-Italic.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Ubuntu Mono";
-    src: url("UbuntuMono-Regular.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "DejaVu Sans";
-    src: url("dejavusans.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("lato-regular-webfont.woff") format("woff");
+:root {
+    --reder: #ff0000;
+    --red: #ff3131;
+    --ut-orange: #ff8700ff;
+    --gold: #ffd300ff;
+    --chartreuse: #deff0aff;
+    --spring-bud: #a1ff0aff;
+    --spring-green: #0aff99ff;
+    --electric-blue: #0aefffff;
+    --azure: #147df5ff;
+    --azure-secondary: #0077ff;
+    --electric-indigo: #580affff;
+    --electric-purple: #be0affff;
 }
 
 main {
@@ -43,203 +33,12 @@ main.responsive {
     margin: 1em 8em 0 8em;
 }
 
-.card {
-    padding: 1em;
-}
-
 .w-100 {
     width: 100%;
 }
 
-.card-nav {
-    display: flex;
-    gap: 1em;
-}
-
-.card-nav > a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.card-nav .card {
-    border: 1px solid #e8edf1;
-    width: 25%;
-    padding: 1em;
-}
-
-.card-nav .card:hover {
-    border: 1px solid #999;
-    box-shadow: 0 0 5px #888;
-}
-
-.navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    font-family: "Lato", "Ubuntu Mono", sans-serif;
-}
-
-.nav-item {
-    margin: 0.25em;
-}
-
-.display-cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.display-card {
-    margin: 0.66em;
-    padding: 0.80em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.display-card-buttons {
-    display: flex;
-}
-
-.display-card-button:first-child {
-    margin-left: 0;
-}
-
-.display-button:last-child {
-    margin-right: 0;
-}
-
-.display-button {
-    margin-left: 0.25em;
-    margin-right: 0.25em
-}
-
-.display-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.display-card-link {
-    color: inherit;
-    text-decoration: none;
-}
-
-.card-error {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.button {
-    display: inline-flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    position: relative;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    outline: 0px;
-    vertical-align: middle;
-    text-decoration: none;
-    box-shadow: none;
-    border: none;
-    border-radius: 1px;
-    cursor: pointer;
-    font-size: 1rem;
-    min-height: 34px;
-    min-width: 105px;
-    line-height: 1;
-    text-transform: capitalize;
-    color: rgb(255, 255, 255);
-    padding: 2px 20px;
-}
-
-.button-primary {
-    background-color: rgb(54, 131, 220);
-}
-
-.button-primary:hover {
-    background-color: rgb(34, 108, 194);
-    transition: background-color 400ms ease-in-out;
-}
-
-.button-danger {
-    background-color: rgb(220, 54, 54);
-}
-
-.button-danger:hover {
-    background-color: rgb(194, 54, 54);
-}
-
-input.form-file-picker[type="file"]::file-selector-button {
-    display: inline-flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    position: relative;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    outline: 0px;
-    user-select: none;
-    vertical-align: middle;
-    appearance: none;
-    text-decoration: none;
-    box-shadow: none;
-    border: none;
-    border-radius: 1px;
-    cursor: pointer;
-    font-size: 1rem;
-    min-height: 34px;
-    min-width: 105px;
-    line-height: 1;
-    text-transform: capitalize;
-    transition: none 0s ease 0s;
-    background-color: rgb(54, 131, 220);
-    color: rgb(255, 255, 255);
-    padding: 2px 20px;
-}
-
-.form-flex-column {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
-
-.form-input {
-    display: flex;
-    flex-direction: column;
-    max-width: 12em;
-}
-
-.form-input.textarea {
-    max-width: none;
-}
-
-.form-input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-}
-
-.form-input-group .form-input-header {
-    margin: 0;
-
-}
-
-.form-input-flex-row {
-    display: flex;
-    gap: 0.5em;
-}
-
-.form-input-flex-row .form-input {
-    display: inline;
-}
-
-input.form-file-picker[type="file"]::file-selector-button:hover {
-    background-color: rgb(34, 108, 194);
-}
-
-.cute-labels {
-
+.italic {
+    font-style: italic;
 }
 
 .cute-label {
@@ -249,18 +48,27 @@ input.form-file-picker[type="file"]::file-selector-button:hover {
     padding: 0.5em;
     border-radius: 0.25em;
 }
-  
-.success {background-color: #04AA6D;}
-.info {background-color: #2196F3;}
-.warning {background-color: #ff9800;}
-.danger {background-color: #f44336;}
-.other {background-color: #e7e7e7; color: black;} 
 
-.dialog > dialog > form {
-    width: 100%;
-    height: 100%;
+.success {
+    background-color: #04AA6D;
 }
 
+.info {
+    background-color: #2196F3;
+}
+
+.warning {
+    background-color: #ff9800;
+}
+
+.danger {
+    background-color: #f44336;
+}
+
+.other {
+    background-color: #e7e7e7;
+    color: black;
+}
 
 .form-action-buttons {
     display: flex;
@@ -283,106 +91,4 @@ input.form-file-picker[type="file"]::file-selector-button:hover {
 
 .form-preview-tabs li.active {
     border-color: #0097d7;
-}
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    .display-cards {
-        display: block;
-    }
-}
-
-.dialog {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75em;
-}
-
-.dialog-head {
-    display: flex;
-    justify-content: space-between;
-}
-
-.dialog-title {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-family: "Ubuntu Mono Bold", sans-serif, serif;
-}
-
-.dialog-close {
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25em;
-}
-
-.dialog > #updateForm {
-    width: 500px;
-}
-
-@media only screen and (max-width: 599px) {
-    .card-nav {
-        flex-direction: column
-    }
-    
-    .card-nav .card {
-        width: auto;
-    }
-   
-    main.responsive  {
-        margin: 1em 0.5em 0 0.5em;
-    }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    .card-nav {
-        flex-direction: column
-    }
-    
-    .card-nav .card {
-        width: auto;
-    }
-
-    main.responsive  {
-        margin: 1em 1em 0 1em;
-    }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    .card-nav {
-        flex-direction: column
-    }
-    
-    .card-nav .card {
-        width: auto;
-    }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    .card-nav {
-        flex-direction: column;
-    }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-    .card-nav {
-        flex-direction: row;
-    }
-
-    .card-nav .card {
-        width: 30%;
-    }
-
-    main.responsive {
-        margin: 1em 8em 0 8em;
-    }
 }

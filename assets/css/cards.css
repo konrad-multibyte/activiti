@@ -1,0 +1,94 @@
+.card {
+    padding: 1em;
+    position: relative;
+}
+
+.card > .button-expand {
+    position: absolute;
+    top: 1em;
+    left: -2.5em;
+}
+
+.card-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.card-stack .card {
+    border: 1px solid #e8edf1;
+
+}
+
+.card-stack .card:hover {
+    border: 1px solid #999;
+    box-shadow: 0 0 5px #888;
+}
+
+.card-nav {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}
+
+.card-nav>a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.card-nav .card {
+    border: 1px solid #e8edf1;
+    flex: 0 1 20%;
+}
+
+.card-nav .card:hover {
+    border: 1px solid #999;
+    box-shadow: 0 0 5px #888;
+}
+
+.display-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.display-card {
+    margin: 0.66em;
+    padding: 0.80em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.display-card-button:first-child {
+    margin-left: 0;
+}
+
+.display-button:last-child {
+    margin-right: 0;
+}
+
+.display-button {
+    margin-left: 0.25em;
+    margin-right: 0.25em
+}
+
+.display-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.display-card-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.card-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-card-buttons {
+    display: flex;
+}
