@@ -72,3 +72,28 @@ input.form-file-picker[type="file"]::file-selector-button {
 input.form-file-picker[type="file"]::file-selector-button:hover {
     background-color: rgb(34, 108, 194);
 }
+
+.button-expand {
+    vertical-align: middle;
+    transform: rotate(-90deg);
+}
+
+.rotate-90 {
+    animation: rotate90 1ms forwards;
+}
+
+.rotate-90-reverse {
+    animation: rotate90reverse 1ms reverse;
+}
+
+@keyframes rotate90 {
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes rotate90reverse {
+    100% {
+        transform: rotate(-90deg);
+    }
+}

@@ -23,10 +23,6 @@
         flex-direction: column
     }
 
-    .card-nav .card {
-        width: auto;
-    }
-
     main.responsive {
         margin: 1em 1em 0 1em;
     }
@@ -36,10 +32,6 @@
 @media only screen and (min-width: 768px) {
     .card-nav {
         flex-direction: column
-    }
-
-    .card-nav .card {
-        width: auto;
     }
 }
 
@@ -54,10 +46,6 @@
 @media only screen and (min-width: 1200px) {
     .card-nav {
         flex-direction: row;
-    }
-
-    .card-nav .card {
-        width: 30%;
     }
 
     main.responsive {
