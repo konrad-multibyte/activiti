@@ -23,6 +23,6 @@
         "vitest": "^0.34.4"
     },
     "dependencies": {
-        "firebase": "^10.4.0"
+        "firebase": "^10.5.0"
     }
 }
