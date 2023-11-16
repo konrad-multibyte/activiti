@@ -34,7 +34,7 @@
             <div v-for="childFieldCollection of field.fields" :key="childFieldCollection">
               <div v-if="childFieldCollection.length > 0">
                 <div class="card-stack">
-                  <div v-for="childField of childFieldCollection" :key="childField" class="card">
+                  <div v-for="childField of childFieldCollection" :id="childField.id" :key="childField" class="card">
                     <img
                       class="button-expand"
                       src="~/assets/svg/arrowdown.svg"
@@ -42,18 +42,36 @@
                       :data-field-id="`${childField.id}`"
                       @click="expandField"
                     >
-                    <p class="header">
+                    <h4 class="header">
                       {{ childField.name == '' ? 'No label' : childField.name }}
-                    </p>
+                    </h4>
                     <p>
                       ID: {{ childField.id }}
                     </p>
                     <p>
                       Type: {{ capitalize(childField.type.replaceAll('_', ' ').replaceAll('-', ' ')) }} ({{ childField.type }})
                     </p>
-                    <p v-show="expandedFields.includes(childField.id)">
-                      {{ childField }}
-                    </p>
+                    <div v-show="expandedFields.includes(childField.id)">
+                      <div v-if="childField.visibilityCondition !== null">
+                        <h4>Visibility Condition</h4>
+                        <pre><a :href="`#${childField.visibilityCondition.leftFormFieldId}`" @click="highlightField(childField.visibilityCondition.leftFormFieldId)">{{ childField.visibilityCondition.leftFormFieldId }}</a> {{ childField.visibilityCondition.operator }} {{ childField.visibilityCondition.rightRestResponseId }}{{ childField.visibilityCondition.rightValue }}{{ childField.visibilityCondition.rightFormFieldId }}</pre>
+                        <div v-if="childField.visibilityCondition.nextCondition">
+                          <pre v-for="condition in nestedVisibilityCondition(childField.visibilityCondition.nextCondition)" :key="condition">
+                            <pre><a :href="`#${condition.leftFormFieldId}`">{{ condition.leftFormFieldId }}</a> {{ condition.operator }} {{ condition.rightValue }}{{ condition.rightFormFieldId }}</pre>
+                          </pre>
+                        </div>
+                      </div>
+                      <div v-if="childField.type === 'configurable_table_input'">
+                        <h4>Configurable Input Table</h4>
+                        <pre>
+                            {{ childField.params.customProperties.tableItemsConfiguration }}
+                        </pre>
+                      </div>
+                      <h4>All properties</h4>
+                      <pre wrap="true">
+                        {{ childField }}
+                      </pre>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -163,6 +181,32 @@ export default {
                 clickEvent.target.classList.remove('rotate-90')
                 clickEvent.target.classList.add('rotate-90-reverse')
             }
+        },
+        unpackVisibilityConditions (nestedVisibilityCondition) {
+            const conditions = []
+            while (nestedVisibilityCondition.nextCondition !== null) {
+                conditions.push(nestedVisibilityCondition.nextCondition)
+                nestedVisibilityCondition = nestedVisibilityCondition.nextCondition
+            }
+            return conditions
+        },
+        highlightField (id) {
+            const card = document.getElementById(id)
+            card.animate(
+                [
+                    {
+                        border: '1px solid var(--reder)',
+                        boxShadow: '0 0 5px var(--red)'
+                    },
+                    {
+                        border: '1px solid #e8edf1'
+                    }
+                ],
+                {
+                    duration: 2000,
+                    iterations: 1
+                }
+            )
         }
     }
 }
