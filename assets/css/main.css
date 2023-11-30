@@ -2,9 +2,9 @@
 @import url('~/assets/css/buttons.css');
 @import url('~/assets/css/navbar.css');
 @import url('~/assets/css/fonts.css');
-
 @import url('~/assets/css/responsive.css');
 @import url('~/assets/css/forms.css');
+@import url('~/assets/css/confluence.css');
 
 :root {
     --reder: #ff0000;
@@ -19,6 +19,8 @@
     --azure-secondary: #0077ff;
     --electric-indigo: #580affff;
     --electric-purple: #be0affff;
+    --confluence-col-gray: #F4F5F7;
+    --confluence-table-gray: #C1C7D0;
 }
 
 main {

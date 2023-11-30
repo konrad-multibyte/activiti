@@ -33,7 +33,7 @@ const { data: form } = useFetch(`/api/form/${route.params.id}`,
         key: 'getForm',
         method: 'GET'
     })
-console.log(form)
+console.log(form.data)
 async function deleteForm (event: MouseEvent) {
     if (event.target != null && event.target instanceof Element) {
         const formId = event.target.getAttribute('data-form-id')
