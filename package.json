@@ -20,7 +20,7 @@
         "babel-eslint": "^10.1.0",
         "eslint": "^8.53.0",
         "nuxt": "^3.8.1",
-        "vitest": "^0.34.6"
+        "vitest": "^1.0.2"
     },
     "dependencies": {
         "firebase": "^10.6.0"
