@@ -126,12 +126,14 @@
 
 <script setup lang="ts">
 const route = useRoute()
-const { data: form } = useFetch(`/api/form/${route.params.id}`,
+const { data: form } = await useFetch(`/api/form/${route.params.id}`,
     {
         key: 'getForm',
         method: 'GET'
     })
-
+useHead({
+    title: form._rawValue.data.name
+})
 interface VisiblityCondition {
   operator: string
   rightFormFieldId: string | null
