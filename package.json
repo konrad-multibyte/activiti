@@ -18,11 +18,11 @@
         "@nuxt/devtools": "latest",
         "@nuxtjs/eslint-config-typescript": "^12.1.0",
         "babel-eslint": "^10.1.0",
-        "eslint": "^8.53.0",
-        "nuxt": "^3.8.1",
-        "vitest": "^0.34.6"
+        "eslint": "^8.55.0",
+        "nuxt": "^3.8.2",
+        "vitest": "^1.0.4"
     },
     "dependencies": {
-        "firebase": "^10.6.0"
+        "firebase": "^10.7.1"
     }
 }
