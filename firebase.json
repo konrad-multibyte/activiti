@@ -1,6 +1,21 @@
 {
   "hosting": {
-    "public": ".output/public",
+    "functions": {
+      "source": ".output/server"
+    },
+    "hosting": [
+      {
+        "site": "activiti-devtools",
+        "public": ".output/public",
+        "cleanUrls": true,
+        "rewrites": [
+          {
+            "source": "**",
+            "function": "server"
+          }
+        ]
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
