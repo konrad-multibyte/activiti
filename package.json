@@ -1,5 +1,5 @@
 {
-    "name": "nuxt-app",
+    "name": "activiti-devtools",
     "private": true,
     "scripts": {
         "build": "nuxi build",
@@ -23,6 +23,7 @@
         "vitest": "^1.0.4"
     },
     "dependencies": {
-        "firebase": "^10.7.1"
+        "firebase": "^10.7.1",
+        "firebase-functions": "^4.5.0"
     }
 }

@@ -22,9 +22,9 @@ export default defineNuxtConfig({
         firebase: {
             gen: 2,
             httpsOptions: {
-                region: 'europe-west1',
                 maxInstances: 2
             }
-        }
+        },
+        preset: 'firebase'
     }
 })
