@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "activiti-devtools",
-    "public": ".output/public",
+    "public": ".output/server",
     "ignore": [
       "firebase.json",
       "**/.*",
