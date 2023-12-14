@@ -25,6 +25,9 @@ export default defineNuxtConfig({
                 maxInstances: 2
             }
         },
-        preset: 'firebase'
+        preset: 'firebase',
+        replace: {
+            'functions.https.onRequest': 'functions.region(\'europe-west2\').https.onRequest'
+        }
     }
 })

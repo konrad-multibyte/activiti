@@ -11,7 +11,8 @@
       "rewrites": [
         {
           "source": "**",
-          "function": "server"
+          "function": "server",
+          "region": "europe-west1"
         }
       ]
     }
