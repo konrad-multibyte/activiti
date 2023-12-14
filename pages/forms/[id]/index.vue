@@ -20,6 +20,11 @@
             View Raw
           </button>
         </a>
+        <a :href="`/forms/${form.id}/document`">
+          <button class="form-action-button button button-primary">
+            View Document
+          </button>
+        </a>
       </div>
       <FormPreview :form="form.data" />
     </div>
@@ -28,12 +33,14 @@
 
 <script setup lang='ts'>
 const route = useRoute()
-const { data: form } = useFetch(`/api/form/${route.params.id}`,
+const { data: form } = await useFetch(`/api/form/${route.params.id}`,
     {
         key: 'getForm',
         method: 'GET'
     })
-console.log(form)
+useHead({
+    title: form._rawValue.data.name
+})
 async function deleteForm (event: MouseEvent) {
     if (event.target != null && event.target instanceof Element) {
         const formId = event.target.getAttribute('data-form-id')

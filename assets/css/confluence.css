@@ -1,0 +1,40 @@
+table.confluence {
+    border: 1px solid var(--confluence-table-gray, #C1C7D0);
+    border-collapse: collapse;
+}
+
+table.confluence th {
+    background-color: var(--confluence-col-gray, #F4F5F7);
+    border-left: 1px solid var(--confluence-table-gray, #C1C7D0);
+    border-right: 1px solid var(--confluence-table-gray, #C1C7D0);
+    padding: 1em;
+    text-align: left;
+}
+
+table.confluence th:first-child {
+    border-left: none;
+}
+
+table.confluence th:last-child {
+    border-right: none;
+}
+
+table.confluence td {
+    border-left: 1px solid var(--confluence-table-gray, #C1C7D0);
+    border-right: 1px solid var(--confluence-table-gray, #C1C7D0);
+    border-top: 1px solid var(--confluence-table-gray, #C1C7D0);
+    padding: 8px;
+    text-align: left;
+}
+
+table.confluence td:first-child {
+    border-left: none;
+}
+
+table.confluence td:last-child {
+    border-right: none;
+}
+
+div.confluence {
+    margin: 1em 0px 1em 0px;
+}
