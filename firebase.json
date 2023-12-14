@@ -11,10 +11,12 @@
       "rewrites": [
         {
           "source": "**",
-          "function": "server",
-          "region": "europe-west2"
+          "function": "server"
         }
-      ]
+      ],
+      "frameworksBackend": {
+        "region": "europe-west1"
+      }
     }
   ],
   "emulators": {
