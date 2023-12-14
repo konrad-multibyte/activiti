@@ -17,5 +17,14 @@ export default defineNuxtConfig({
                 protocol: 'wss'
             }
         }
+    },
+    nitro: {
+        firebase: {
+            gen: 2,
+            httpsOptions: {
+                region: 'europe-west1',
+                maxInstances: 2
+            }
+        }
     }
 })
