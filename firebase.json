@@ -1,7 +1,10 @@
 {
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
   "functions": {
-    "source": ".output/server",
-    "runtime": "nodejs20"
+    "source": ".output/server"
   },
   "hosting": [
     {
@@ -13,12 +16,12 @@
           "source": "**",
           "function": "server"
         }
-      ],
-      "frameworksBackend": {
-        "region": "europe-west1"
-      }
+      ]
     }
   ],
+  "storage": {
+    "rules": "storage.rules"
+  },
   "emulators": {
     "functions": {
       "port": 5001
@@ -33,14 +36,9 @@
       "port": 9199
     },
     "ui": {
-      "enabled": true
+      "enabled": true,
+      "port": 4000
     },
     "singleProjectMode": true
-  },
-  "storage": {
-    "rules": "storage.rules"
-  },
-  "firestore": {
-    "rules": "firestore.rules"
   }
 }
